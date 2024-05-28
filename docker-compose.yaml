@@ -1,0 +1,20 @@
+services:
+  encontrabr:
+    container_name: encontrabr
+    image: wordpress:latest
+    volumes:
+      - ./wordpress:/var/www/html
+    ports:
+      - "8002:80"
+    restart: always
+    networks:
+      - apps-network
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+networks:
+  apps-network:
+    external: true
